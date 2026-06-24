@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Decode avatar from SVG
         run: |
+          # Decode the existing text-safe SVG payload into a real JPG file.
           perl -0ne 'print $1 if /base64,([^\"]+)/' assets/Yumo.svg | base64 -d > assets/Yumo.jpg
           test -s assets/Yumo.jpg
           file assets/Yumo.jpg
