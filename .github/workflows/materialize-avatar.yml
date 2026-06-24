@@ -3,7 +3,7 @@ name: Materialize avatar image
 on:
   push:
     paths:
-      - assets/Yumo.svg
+      - assets/Yumo.jpg.b64
       - .github/workflows/materialize-avatar.yml
   workflow_dispatch:
 
@@ -15,12 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decode avatar from SVG
+      - name: Decode avatar from clean base64 source
         run: |
-          # Decode the existing text-safe SVG payload into a real JPG file.
-          perl -0ne 'print $1 if /base64,([^\"]+)/' assets/Yumo.svg | base64 -d > assets/Yumo.jpg
-          test -s assets/Yumo.jpg
-          file assets/Yumo.jpg
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+
+          source = Path('assets/Yumo.jpg.b64').read_text().strip()
+          image = base64.b64decode(source, validate=True)
+          assert image[:3] == b'\xff\xd8\xff', 'decoded file is not a JPEG'
+          Path('assets/Yumo.jpg').write_bytes(image)
+          print(f'wrote assets/Yumo.jpg ({len(image)} bytes)')
+          PY
       - name: Commit decoded avatar
         run: |
           git config user.name "github-actions[bot]"
