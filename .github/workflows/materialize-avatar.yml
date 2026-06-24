@@ -3,7 +3,8 @@ name: Materialize avatar image
 on:
   push:
     paths:
-      - assets/Yumo.jpg.b64
+      - assets/Yumo.svg
+      - .github/workflows/materialize-avatar.yml
   workflow_dispatch:
 
 permissions:
@@ -14,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decode avatar
+      - name: Decode avatar from SVG
         run: |
-          base64 -d assets/Yumo.jpg.b64 > assets/Yumo.jpg
+          perl -0ne 'print $1 if /base64,([^\"]+)/' assets/Yumo.svg | base64 -d > assets/Yumo.jpg
           test -s assets/Yumo.jpg
           file assets/Yumo.jpg
       - name: Commit decoded avatar

@@ -10,7 +10,7 @@ window.YUMO_SITE_CONTENT = {
   ],
   profile: {
     name: "Yumo",
-    avatar: "assets/Yumo.svg",
+    avatar: "assets/Yumo.jpg",
     labels: {
       education: "Education",
       personalNote: "Personal Note",
