@@ -27,14 +27,6 @@
     const avatar = createEl("img", "profile-avatar");
     avatar.src = profile.avatar;
     avatar.alt = `${profile.name} avatar`;
-    if (profile.avatarFallback) {
-      let fallbackApplied = false;
-      avatar.addEventListener("error", () => {
-        if (fallbackApplied) return;
-        fallbackApplied = true;
-        avatar.src = profile.avatarFallback;
-      });
-    }
 
     const name = createEl("h1", "profile-name", profile.name);
 
