@@ -32,7 +32,7 @@ window.YUMO_SITE_CONTENT = {
     kicker: "FOR LEARNERS, BUILDERS, AND PEOPLE WHO LIKE USEFUL THINGS",
     title: "Experience, tools, and resources for learning better and working smarter.",
     subtitle:
-      "I collect course and project notes, practical templates, AI workflows, and small tools that can save people from repeating the same detours.",
+      "I collect learning routes, project notes, AI workflows, practical templates, and small tools that help people avoid repeated detours.",
   },
   sections: [
     {
@@ -41,15 +41,21 @@ window.YUMO_SITE_CONTENT = {
       title: "Learning and project notes",
       entries: [
         {
-          title: "Course paths and study notes",
+          title: "Learning routes",
           description:
-            "Notes, routes, and useful materials that help juniors decide where to start and what to avoid.",
+            "Course paths, study notes, and decisions that help juniors find a workable starting point.",
           href: "#experience",
         },
         {
-          title: "Project and competition reflections",
+          title: "Project notes",
           description:
-            "How projects were organized, where time was wasted, and what could be reused next time.",
+            "Reflections from projects, competitions, internships, and collaborations: what worked, what wasted time, and what can be reused.",
+          href: "#experience",
+        },
+        {
+          title: "AI workflows",
+          description:
+            "Practical ways to use AI for study, writing, coding, automation, and knowledge work without losing judgment.",
           href: "#experience",
         },
       ],
@@ -60,28 +66,29 @@ window.YUMO_SITE_CONTENT = {
       title: "A small toolbox for daily work",
       entries: [
         {
-          title: "Weekly report generator",
+          title: "Weekly Report Generator",
           description:
-            "Turn rough daily notes into a polished weekly report with tone and structure options.",
+            "Turn scattered study, internship, or project notes into a structured weekly report you can copy and edit.",
+          href: "weekly-report.html",
+          status: "Available",
+          actionLabel: "Open tool",
+        },
+        {
+          title: "Email Template Helper",
+          description:
+            "Draft polite, concise, or stronger emails for common study and work situations.",
           href: "#tools",
           status: "Coming soon",
         },
         {
-          title: "Task board",
+          title: "Task Board",
           description:
             "A lightweight board for course, project, and work tasks without unnecessary ceremony.",
           href: "#tools",
           status: "Coming soon",
         },
         {
-          title: "Email template helper",
-          description:
-            "Generate polite, concise, or stronger email drafts for common study and work situations.",
-          href: "#tools",
-          status: "Coming soon",
-        },
-        {
-          title: "Public webpage to table script",
+          title: "Public Webpage to Table Script",
           description:
             "Collect public webpage information and export it into a clean spreadsheet for comparison.",
           href: "#tools",
@@ -92,12 +99,12 @@ window.YUMO_SITE_CONTENT = {
     {
       id: "resources",
       label: "03 / Resources",
-      title: "Curated links worth keeping",
+      title: "Reusable links and templates",
       entries: [
         {
-          title: "AI and productivity resources",
+          title: "Curated resource shelves",
           description:
-            "Skills, prompts, workflows, and references that are useful enough to revisit.",
+            "AI tools, study paths, project templates, programming references, writing support, and automation ideas worth revisiting.",
           href: "#resources",
         },
       ],

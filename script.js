@@ -10,10 +10,20 @@
     root.replaceChildren(...children.filter(Boolean));
   }
 
+  function isHomePage() {
+    return Boolean(document.getElementById("home"));
+  }
+
+  function resolveHref(href) {
+    if (href.startsWith("#") && !isHomePage()) return `index.html${href}`;
+    return href;
+  }
+
   function createLink(item, className) {
     const link = createEl("a", className, item.label || item.title);
-    link.href = item.href;
-    if (item.href.startsWith("http")) {
+    const href = resolveHref(item.href);
+    link.href = href;
+    if (href.startsWith("http")) {
       link.target = "_blank";
       link.rel = "noreferrer";
     }
@@ -23,6 +33,7 @@
   function renderProfileSidebar(content) {
     const profile = content.profile;
     const root = document.getElementById("profile-sidebar");
+    if (!root) return;
 
     const avatar = createEl("img", "profile-avatar");
     avatar.src = profile.avatar;
@@ -53,12 +64,14 @@
 
   function renderTopNav(navItems) {
     const root = document.getElementById("top-nav");
+    if (!root) return;
     const links = navItems.map((item) => createLink(item, "nav-link"));
     clearAndAppend(root, links);
   }
 
   function renderHero(hero) {
     const root = document.getElementById("hero");
+    if (!root) return;
     const kicker = createEl("div", "hero-kicker", hero.kicker);
     const title = createEl("h2", "hero-title", hero.title);
     const subtitle = createEl("p", "hero-subtitle", hero.subtitle);
@@ -68,10 +81,19 @@
   function renderEntry(entry) {
     const article = createEl("article", "flow-item");
     const body = createEl("div", "flow-body");
-    body.append(createEl("h3", "flow-title", entry.title));
+    const title = createEl("h3", "flow-title");
+    if (entry.actionLabel) {
+      title.append(createLink({ label: entry.title, href: entry.href }, "flow-title-link"));
+    } else {
+      title.textContent = entry.title;
+    }
+    body.append(title);
     body.append(createEl("p", "flow-description", entry.description));
     if (entry.status) {
       body.append(createEl("span", "flow-status", entry.status));
+    }
+    if (entry.actionLabel) {
+      body.append(createLink({ label: entry.actionLabel, href: entry.href }, "flow-action"));
     }
 
     const arrow = createEl("a", "flow-arrow", "↗");
@@ -92,6 +114,7 @@
 
   function renderContentSections(sections, resources) {
     const root = document.getElementById("content-sections");
+    if (!root) return;
     const rendered = sections.map((section) => {
       const block = createEl("section", "content-section");
       block.id = section.id;
@@ -113,6 +136,7 @@
 
   function renderUpdates(updates) {
     const root = document.getElementById("updates");
+    if (!root) return;
     const heading = createEl("div", "section-heading");
     heading.append(createEl("span", "", window.YUMO_SITE_CONTENT.updatesSection.label));
     heading.append(createEl("h2", "", window.YUMO_SITE_CONTENT.updatesSection.title));
@@ -133,6 +157,7 @@
 
   function renderAbout(about) {
     const root = document.getElementById("about");
+    if (!root) return;
     const heading = createEl("div", "section-heading");
     heading.append(createEl("span", "", about.label));
     heading.append(createEl("h2", "", about.title));
@@ -141,7 +166,7 @@
   }
 
   function renderSite(content) {
-    document.title = content.publicTitle || content.siteTitle;
+    if (isHomePage()) document.title = content.publicTitle || content.siteTitle;
     renderProfileSidebar(content);
     renderTopNav(content.nav);
     renderHero(content.hero);

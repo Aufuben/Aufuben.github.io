@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yumo's Site | Weekly Report Generator</title>
+    <meta
+      name="description"
+      content="Turn scattered study, internship, or project notes into a structured weekly report directly in your browser."
+    >
+    <meta name="author" content="Yumo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://Aufuben.github.io/weekly-report.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://Aufuben.github.io/weekly-report.html">
+    <meta property="og:title" content="Weekly Report Generator | Yumo's Site">
+    <meta
+      property="og:description"
+      content="A browser-side weekly report generator for study, internship, and project updates."
+    >
+    <meta property="og:image" content="https://Aufuben.github.io/assets/Yumo.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Weekly Report Generator | Yumo's Site">
+    <meta
+      name="twitter:description"
+      content="Turn scattered notes into a structured weekly report in your browser."
+    >
+    <meta name="twitter:image" content="https://Aufuben.github.io/assets/Yumo.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <script src="content.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="weekly-report.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell tool-shell">
+      <aside class="profile-sidebar" id="profile-sidebar" aria-label="Profile"></aside>
+      <main class="main-content">
+        <nav class="top-nav" id="top-nav" aria-label="Primary navigation"></nav>
+        <section class="tool-hero">
+          <a class="back-link" href="index.html#tools">Back to Home</a>
+          <div class="hero-kicker">BROWSER-SIDE TOOL</div>
+          <h2 class="hero-title">Weekly Report Generator</h2>
+          <p class="hero-subtitle">
+            Paste scattered study, internship, or project notes. The tool formats them into a clear weekly report without sending anything away from your browser.
+          </p>
+        </section>
+
+        <section class="tool-workbench" aria-label="Weekly report generator">
+          <form class="tool-form" id="weekly-report-form">
+            <label class="field-group" for="report-context">
+              <span>Week / Context</span>
+              <input id="report-context" name="context" type="text" value="第 5 周 / 实习周报">
+            </label>
+
+            <div class="field-row">
+              <label class="field-group" for="report-role">
+                <span>Role</span>
+                <select id="report-role" name="role">
+                  <option>Student</option>
+                  <option selected>Intern</option>
+                  <option>Project Member</option>
+                </select>
+              </label>
+
+              <label class="field-group" for="report-tone">
+                <span>Tone</span>
+                <select id="report-tone" name="tone">
+                  <option>Concise</option>
+                  <option selected>Formal</option>
+                  <option>Warm</option>
+                </select>
+              </label>
+
+              <label class="field-group" for="report-language">
+                <span>Language</span>
+                <select id="report-language" name="language">
+                  <option selected>中文</option>
+                  <option>English</option>
+                  <option>Bilingual</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field-group" for="report-notes">
+              <span>Raw Notes</span>
+              <textarea id="report-notes" name="rawNotes" rows="13" placeholder="完成了数据清洗脚本&#10;遇到问题：接口返回字段不稳定&#10;下周计划整理实验结果&#10;需要和导师同步模型评估口径"></textarea>
+            </label>
+
+            <div class="tool-actions">
+              <button class="primary-button" type="submit">Generate</button>
+              <button class="secondary-button" id="clear-report" type="button">Clear</button>
+            </div>
+          </form>
+
+          <section class="tool-output-panel" aria-label="Generated report">
+            <div class="output-heading">
+              <h3>Generated Report</h3>
+              <button class="secondary-button" id="copy-report" type="button" disabled>Copy</button>
+            </div>
+            <textarea id="report-output" rows="20" readonly></textarea>
+            <p class="tool-status" id="report-status" aria-live="polite">Your report will appear here.</p>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

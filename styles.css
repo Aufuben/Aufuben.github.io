@@ -258,6 +258,14 @@ a:hover {
   font-weight: 600;
 }
 
+.flow-title-link {
+  border-bottom: 1px solid transparent;
+}
+
+.flow-title-link:hover {
+  border-bottom-color: currentColor;
+}
+
 .flow-description {
   margin: 0;
   max-width: 56ch;
@@ -282,6 +290,19 @@ a:hover {
 
 .flow-arrow:hover {
   color: var(--accent);
+}
+
+.flow-action {
+  justify-self: start;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--line-strong);
+  padding-top: 0.15rem;
+}
+
+.flow-action:hover {
+  border-bottom-color: currentColor;
 }
 
 .resource-tags {
@@ -317,6 +338,135 @@ a:hover {
   max-width: 60ch;
   color: var(--text-muted);
   font-size: 1rem;
+}
+
+.tool-shell {
+  --tool-column-min: minmax(0, 1fr);
+}
+
+.tool-hero {
+  padding: 1.8rem 0 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.tool-workbench {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1.05fr);
+  gap: 1.5rem;
+  padding-top: 1.8rem;
+}
+
+.tool-form,
+.tool-output-panel {
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.field-group {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.field-group span,
+.output-heading h3 {
+  color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.field-group input,
+.field-group select,
+.field-group textarea,
+#report-output {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.field-group input,
+.field-group select {
+  min-height: 2.5rem;
+  padding: 0.5rem 0.65rem;
+}
+
+.field-group textarea,
+#report-output {
+  min-height: 16rem;
+  padding: 0.75rem;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+#report-output {
+  min-height: 24rem;
+  white-space: pre-wrap;
+}
+
+.tool-actions,
+.output-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.output-heading h3 {
+  margin: 0;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 2.4rem;
+  border-radius: 6px;
+  padding: 0.45rem 0.8rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.primary-button {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--panel-bg);
+}
+
+.secondary-button {
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text);
+}
+
+.secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.tool-status {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 @media (max-width: 860px) {
@@ -373,5 +523,14 @@ a:hover {
   .flow-arrow {
     justify-self: start;
     padding-top: 0;
+  }
+
+  .tool-workbench,
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-workbench {
+    gap: 1.2rem;
   }
 }
