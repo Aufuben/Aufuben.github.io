@@ -25,7 +25,7 @@
     link.href = href;
     if (href.startsWith("http")) {
       link.target = "_blank";
-      link.rel = "noreferrer";
+      link.rel = "noopener noreferrer";
     }
     return link;
   }
@@ -165,12 +165,67 @@
     clearAndAppend(root, [heading, body]);
   }
 
+  function createResourceDetail(label, text) {
+    const detail = createEl("div", "resource-card-detail");
+    detail.append(createEl("span", "resource-card-label", label));
+    detail.append(createEl("p", "", text));
+    return detail;
+  }
+
+  function renderResourceCard(resource) {
+    const article = createEl("article", "resource-card");
+    const header = createEl("div", "resource-card-header");
+    header.append(createEl("h3", "", resource.name));
+    header.append(createLink({ label: "访问资源", href: resource.url }, "resource-card-link"));
+
+    article.append(header);
+    article.append(createEl("p", "resource-card-summary", resource.summary));
+    article.append(createResourceDetail("适合", resource.bestFor));
+    article.append(createResourceDetail("打开时机", resource.useWhen));
+    article.append(createResourceDetail("留下原因", resource.whyKeepIt));
+    return article;
+  }
+
+  function renderResourceCategory(category) {
+    const section = createEl("section", "resource-category");
+    const heading = createEl("div", "resource-category-heading");
+    heading.append(createEl("h2", "", category.title));
+    heading.append(createEl("p", "", category.description));
+
+    const grid = createEl("div", "resource-card-grid");
+    for (const resource of category.resources || []) {
+      grid.append(renderResourceCard(resource));
+    }
+
+    section.append(heading, grid);
+    return section;
+  }
+
+  function renderResourcesPage(resourcesPage) {
+    const root = document.getElementById("resources-page");
+    if (!root || !resourcesPage) return;
+
+    const intro = createEl("section", "resources-intro");
+    intro.append(createEl("div", "hero-kicker", resourcesPage.intro.eyebrow));
+    intro.append(createEl("h2", "hero-title", resourcesPage.intro.title));
+    intro.append(createEl("p", "hero-subtitle", resourcesPage.intro.description));
+
+    const categories = createEl("div", "resource-categories");
+    for (const category of resourcesPage.categories || []) {
+      if (!category.resources || category.resources.length === 0) continue;
+      categories.append(renderResourceCategory(category));
+    }
+
+    clearAndAppend(root, [intro, categories]);
+  }
+
   function renderSite(content) {
     if (isHomePage()) document.title = content.publicTitle || content.siteTitle;
     renderProfileSidebar(content);
     renderTopNav(content.nav);
     renderHero(content.hero);
     renderContentSections(content.sections, content.resources);
+    renderResourcesPage(content.resourcesPage);
     renderUpdates(content.updates);
     renderAbout(content.about);
   }
@@ -181,6 +236,7 @@
     renderTopNav,
     renderHero,
     renderContentSections,
+    renderResourcesPage,
     renderUpdates,
     renderAbout,
   };

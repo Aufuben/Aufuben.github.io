@@ -178,7 +178,7 @@ a:hover {
 
 .hero-title {
   margin: 0;
-  max-width: 13.5ch;
+  max-width: 18ch;
   font-family: var(--font-serif);
   font-size: 3.2rem;
   line-height: 1.04;
@@ -463,10 +463,154 @@ a:hover {
   opacity: 0.48;
 }
 
+.assistant-output-block {
+  min-width: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.assistant-output-block + .assistant-output-block {
+  padding-top: 0.25rem;
+}
+
+#quick-draft-output,
+#ai-prompt-output {
+  width: 100%;
+  min-height: 18rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-bg);
+  color: var(--text);
+  font: inherit;
+  line-height: 1.55;
+  padding: 0.75rem;
+  resize: vertical;
+  white-space: pre-wrap;
+}
+
 .tool-status {
   margin: 0;
   color: var(--text-muted);
   font-size: 0.9rem;
+}
+
+.resources-shell {
+  --resource-card-min: 17rem;
+}
+
+.resources-back-link {
+  margin-top: 1.8rem;
+}
+
+.resources-page {
+  display: grid;
+  gap: 1.8rem;
+  padding-bottom: 1rem;
+}
+
+.resources-intro {
+  padding: 0.6rem 0 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.resources-intro .hero-title {
+  max-width: 22ch;
+}
+
+.resource-categories {
+  display: grid;
+  gap: 1.7rem;
+}
+
+.resource-category {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.resource-category-heading {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 48rem;
+}
+
+.resource-category-heading h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+.resource-category-heading p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.resource-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.resource-card {
+  min-width: 0;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(251, 247, 240, 0.62);
+}
+
+.resource-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.9rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.resource-card-header h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+.resource-card-link {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.resource-card-link:hover {
+  border-bottom-color: currentColor;
+}
+
+.resource-card-summary,
+.resource-card-detail p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.resource-card-detail {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.resource-card-label {
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 @media (max-width: 860px) {
@@ -532,5 +676,17 @@ a:hover {
 
   .tool-workbench {
     gap: 1.2rem;
+  }
+
+  .resources-back-link {
+    margin-top: 1.25rem;
+  }
+
+  .resources-intro .hero-title {
+    max-width: none;
+  }
+
+  .resource-card-grid {
+    grid-template-columns: 1fr;
   }
 }

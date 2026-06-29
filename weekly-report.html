@@ -1,29 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yumo's Site | Weekly Report Generator</title>
+    <title>Yumo's Site | Weekly Report Assistant</title>
     <meta
       name="description"
-      content="Turn scattered study, internship, or project notes into a structured weekly report directly in your browser."
+      content="Turn rough study, internship, or project notes into a safer local weekly report draft and a copyable AI prompt."
     >
     <meta name="author" content="Yumo">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://Aufuben.github.io/weekly-report.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://Aufuben.github.io/weekly-report.html">
-    <meta property="og:title" content="Weekly Report Generator | Yumo's Site">
+    <meta property="og:title" content="Weekly Report Assistant | Yumo's Site">
     <meta
       property="og:description"
-      content="A browser-side weekly report generator for study, internship, and project updates."
+      content="A browser-side weekly report assistant that creates a local draft and an AI prompt without uploading notes."
     >
     <meta property="og:image" content="https://Aufuben.github.io/assets/Yumo.jpg">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Weekly Report Generator | Yumo's Site">
+    <meta name="twitter:title" content="Weekly Report Assistant | Yumo's Site">
     <meta
       name="twitter:description"
-      content="Turn scattered notes into a structured weekly report in your browser."
+      content="Turn rough notes into a local weekly report draft and a copyable AI prompt."
     >
     <meta name="twitter:image" content="https://Aufuben.github.io/assets/Yumo.jpg">
     <link rel="stylesheet" href="styles.css">
@@ -39,31 +39,53 @@
         <section class="tool-hero">
           <a class="back-link" href="index.html#tools">Back to Home</a>
           <div class="hero-kicker">BROWSER-SIDE TOOL</div>
-          <h2 class="hero-title">Weekly Report Generator</h2>
+          <h2 class="hero-title">Weekly Report Assistant</h2>
           <p class="hero-subtitle">
-            Paste scattered study, internship, or project notes. The tool formats them into a clear weekly report without sending anything away from your browser.
+            粘贴很粗糙的学习、实习或项目记录。工具会先在浏览器里生成一版安全草稿，再给你一段可以复制到 ChatGPT 或 Claude 继续润色的提示词。
           </p>
         </section>
 
-        <section class="tool-workbench" aria-label="Weekly report generator">
+        <section class="tool-workbench" aria-label="Weekly report assistant">
           <form class="tool-form" id="weekly-report-form">
             <label class="field-group" for="report-context">
-              <span>Week / Context</span>
-              <input id="report-context" name="context" type="text" value="第 5 周 / 实习周报">
+              <span>周次 / 场景</span>
+              <input id="report-context" name="context" type="text" value="第 6 周 / 学习周报">
             </label>
 
             <div class="field-row">
               <label class="field-group" for="report-role">
-                <span>Role</span>
+                <span>角色</span>
                 <select id="report-role" name="role">
-                  <option>Student</option>
-                  <option selected>Intern</option>
+                  <option selected>Student</option>
+                  <option>Intern</option>
                   <option>Project Member</option>
                 </select>
               </label>
 
+              <label class="field-group" for="report-recipient">
+                <span>周报对象</span>
+                <select id="report-recipient" name="recipient">
+                  <option selected>Teacher</option>
+                  <option>Advisor</option>
+                  <option>Team Lead</option>
+                  <option>Self Review</option>
+                </select>
+              </label>
+
+              <label class="field-group" for="report-type">
+                <span>周报类型</span>
+                <select id="report-type" name="reportType">
+                  <option selected>Study</option>
+                  <option>Internship</option>
+                  <option>Project</option>
+                  <option>Research</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="field-row">
               <label class="field-group" for="report-tone">
-                <span>Tone</span>
+                <span>语气</span>
                 <select id="report-tone" name="tone">
                   <option>Concise</option>
                   <option selected>Formal</option>
@@ -72,33 +94,53 @@
               </label>
 
               <label class="field-group" for="report-language">
-                <span>Language</span>
+                <span>语言</span>
                 <select id="report-language" name="language">
                   <option selected>中文</option>
                   <option>English</option>
                   <option>Bilingual</option>
                 </select>
               </label>
+
+              <label class="field-group" for="report-detail">
+                <span>详细程度</span>
+                <select id="report-detail" name="detailLevel">
+                  <option>Light polish</option>
+                  <option selected>Moderate expansion</option>
+                  <option>AI prompt only</option>
+                </select>
+              </label>
             </div>
 
             <label class="field-group" for="report-notes">
-              <span>Raw Notes</span>
-              <textarea id="report-notes" name="rawNotes" rows="13" placeholder="完成了数据清洗脚本&#10;遇到问题：接口返回字段不稳定&#10;下周计划整理实验结果&#10;需要和导师同步模型评估口径"></textarea>
+              <span>零散记录</span>
+              <textarea id="report-notes" name="rawNotes" rows="13" placeholder="写了数学作业&#10;明天打算复习英语&#10;看了一点论文但还没整理&#10;下周想把项目文档补完"></textarea>
             </label>
 
             <div class="tool-actions">
-              <button class="primary-button" type="submit">Generate</button>
+              <button class="primary-button" type="submit">生成草稿</button>
               <button class="secondary-button" id="clear-report" type="button">Clear</button>
             </div>
           </form>
 
-          <section class="tool-output-panel" aria-label="Generated report">
-            <div class="output-heading">
-              <h3>Generated Report</h3>
-              <button class="secondary-button" id="copy-report" type="button" disabled>Copy</button>
+          <section class="tool-output-panel" aria-label="Generated weekly report assistant outputs">
+            <div class="assistant-output-block">
+              <div class="output-heading">
+                <h3>Quick Draft / 本地草稿</h3>
+                <button class="secondary-button" id="copy-quick-draft" type="button" disabled>复制草稿</button>
+              </div>
+              <textarea id="quick-draft-output" rows="15" readonly></textarea>
             </div>
-            <textarea id="report-output" rows="20" readonly></textarea>
-            <p class="tool-status" id="report-status" aria-live="polite">Your report will appear here.</p>
+
+            <div class="assistant-output-block">
+              <div class="output-heading">
+                <h3>AI Prompt / AI 提示词</h3>
+                <button class="secondary-button" id="copy-ai-prompt" type="button" disabled>复制 AI 提示词</button>
+              </div>
+              <textarea id="ai-prompt-output" rows="15" readonly></textarea>
+            </div>
+
+            <p class="tool-status" id="report-status" aria-live="polite">生成结果会出现在这里。</p>
           </section>
         </section>
       </main>
