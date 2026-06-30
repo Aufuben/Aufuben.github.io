@@ -19,7 +19,7 @@ window.YUMO_SITE_CONTENT = {
     education: [
       "Undergraduate Student in Nanjing University of Posts and Telecommunications",
       "Trainee in Institute of AI for Industry, Chinese Academy of Sciences",
-      "Coming soon...",
+      "Building practical notes, AI workflows, and browser-side tools for learning.",
     ],
     quote: "Keep swimming, until the sea turns blue.",
     contacts: [
@@ -32,7 +32,7 @@ window.YUMO_SITE_CONTENT = {
     kicker: "FOR LEARNERS, BUILDERS, AND PEOPLE WHO LIKE USEFUL THINGS",
     title: "Experience, tools, and resources for learning better and working smarter.",
     subtitle:
-      "I collect learning routes, project notes, AI workflows, practical templates, and small tools that help people avoid repeated detours.",
+      "I use this site to collect learning routes, project notes, AI workflows, practical templates, and small browser-side tools that reduce repeated detours.",
   },
   sections: [
     {
@@ -43,19 +43,19 @@ window.YUMO_SITE_CONTENT = {
         {
           title: "Learning routes",
           description:
-            "Course paths, study notes, and decisions that help juniors find a workable starting point.",
+            "Course paths, reading notes, and reusable study decisions from the process of building a clearer learning system.",
           href: "#experience",
         },
         {
           title: "Project notes",
           description:
-            "Reflections from projects, competitions, internships, and collaborations: what worked, what wasted time, and what can be reused.",
+            "Course projects, collaboration notes, web experiments, and small reviews of what worked, what wasted time, and what can be reused.",
           href: "#experience",
         },
         {
           title: "AI workflows",
           description:
-            "Practical ways to use AI for study, writing, coding, automation, and knowledge work without losing judgment.",
+            "Practical ways to use AI for study, writing, coding, automation, and knowledge work while keeping human judgment in the loop.",
           href: "#experience",
         },
       ],
@@ -261,20 +261,26 @@ window.YUMO_SITE_CONTENT = {
   updates: [
     {
       date: "2026.06",
-      title: "First direction defined",
+      title: "Site direction defined",
       description:
-        "Yumo's Site starts as a warm personal homepage with experience notes, tools, and useful resources.",
+        "Yumo's Site is shaped as a warm personal homepage for experience notes, AI workflows, curated resources, and browser-side tools.",
     },
     {
-      date: "Coming soon",
-      title: "First tool pages",
+      date: "2026.06",
+      title: "Weekly Report Assistant launched",
       description:
-        "The first batch can include a weekly report generator, a task board, and an email template helper.",
+        "The weekly report tool now keeps rough notes in the browser, creates a local draft, and generates a copyable AI prompt.",
+    },
+    {
+      date: "2026.06",
+      title: "Resources page published",
+      description:
+        "A standalone resources page now collects 12 annotated entries across AI, study, templates, programming, writing, and automation.",
     },
   ],
   about: {
     label: "05 / About",
     title: "About this site",
-    body: "This site is a semi-public place for Yumo to collect experience, tools, and resources that may help others learn and work better.",
+    body: "Yumo is an undergraduate student at Nanjing University of Posts and Telecommunications and a trainee in the Institute of AI for Industry, Chinese Academy of Sciences. This site collects learning routes, project notes, AI workflows, curated resources, and small browser-side tools built from real study and work needs.",
   },
 };
