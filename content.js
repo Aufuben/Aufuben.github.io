@@ -11,6 +11,7 @@ window.YUMO_SITE_CONTENT = {
   profile: {
     name: "Yumo",
     avatar: "assets/Yumo.jpg",
+    mobileSummary: "NUPT undergraduate / AI for Industry trainee",
     labels: {
       education: "Education",
       personalNote: "Personal Note",
@@ -74,11 +75,12 @@ window.YUMO_SITE_CONTENT = {
           actionLabel: "Open tool",
         },
         {
-          title: "Email Template Helper",
+          title: "Email Prompt Helper",
           description:
-            "Draft polite, concise, or stronger emails for common study and work situations.",
-          href: "#tools",
-          status: "Coming soon",
+            "Turn rough study or work email notes into a copyable prompt for ChatGPT, Claude, or another model.",
+          href: "email-prompt.html",
+          status: "Available",
+          actionLabel: "Open tool",
         },
         {
           title: "Task Board",

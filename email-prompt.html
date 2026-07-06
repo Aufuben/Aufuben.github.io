@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yumo's Site | Email Prompt Helper</title>
+    <meta
+      name="description"
+      content="Turn rough study or work email notes into a copyable prompt for ChatGPT, Claude, or another model."
+    >
+    <meta name="author" content="Yumo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://Aufuben.github.io/email-prompt.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://Aufuben.github.io/email-prompt.html">
+    <meta property="og:title" content="Email Prompt Helper | Yumo's Site">
+    <meta
+      property="og:description"
+      content="A browser-side helper that turns rough email intent into a safer prompt for an AI model."
+    >
+    <meta property="og:image" content="https://Aufuben.github.io/assets/Yumo.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Email Prompt Helper | Yumo's Site">
+    <meta
+      name="twitter:description"
+      content="Turn rough email notes into a copyable AI prompt without uploading anything."
+    >
+    <meta name="twitter:image" content="https://Aufuben.github.io/assets/Yumo.jpg">
+    <link rel="stylesheet" href="styles.css">
+    <script src="content.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="email-prompt.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell tool-shell">
+      <aside class="profile-sidebar" id="profile-sidebar" aria-label="Profile"></aside>
+      <main class="main-content">
+        <nav class="top-nav" id="top-nav" aria-label="Primary navigation"></nav>
+        <section class="tool-hero">
+          <a class="back-link" href="index.html#tools">Back to Home</a>
+          <div class="hero-kicker">BROWSER-SIDE TOOL</div>
+          <h2 class="hero-title">Email Prompt Helper</h2>
+          <p class="hero-subtitle">
+            粗略写下你想发什么邮件。工具会在浏览器里整理成一段安全、具体、可复制给 ChatGPT 或 Claude 的提示词。
+          </p>
+        </section>
+
+        <section class="tool-workbench" aria-label="Email prompt helper">
+          <form class="tool-form" id="email-prompt-form">
+            <div class="example-actions" id="email-example-actions" aria-label="Email examples">
+              <button class="example-button" type="button" data-email-example="teacher-meeting">约老师聊项目</button>
+              <button class="example-button" type="button" data-email-example="team-follow-up">跟进组长反馈</button>
+              <button class="example-button" type="button" data-email-example="delay-apology">延期说明</button>
+            </div>
+
+            <label class="field-group" for="email-subject">
+              <span>主题线索</span>
+              <input id="email-subject" name="subjectHint" type="text" value="约时间讨论项目选题">
+            </label>
+
+            <div class="field-row">
+              <label class="field-group" for="email-scenario">
+                <span>场景</span>
+                <select id="email-scenario" name="scenario">
+                  <option selected>Ask for meeting</option>
+                  <option>Ask for help</option>
+                  <option>Follow up</option>
+                  <option>Apology or delay</option>
+                  <option>Thank you</option>
+                  <option>Application</option>
+                </select>
+              </label>
+
+              <label class="field-group" for="email-sender-role">
+                <span>身份</span>
+                <select id="email-sender-role" name="senderRole">
+                  <option selected>Student</option>
+                  <option>Intern</option>
+                  <option>Project Member</option>
+                  <option>Applicant</option>
+                </select>
+              </label>
+
+              <label class="field-group" for="email-recipient">
+                <span>收件人</span>
+                <select id="email-recipient" name="recipient">
+                  <option selected>Teacher</option>
+                  <option>Advisor</option>
+                  <option>Team Lead</option>
+                  <option>Classmate</option>
+                  <option>Recruiter</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label class="field-group" for="email-tone">
+                <span>语气</span>
+                <select id="email-tone" name="tone">
+                  <option selected>Polite</option>
+                  <option>Concise</option>
+                  <option>Formal</option>
+                  <option>Warm</option>
+                  <option>Firm</option>
+                </select>
+              </label>
+
+              <label class="field-group" for="email-language">
+                <span>输出语言</span>
+                <select id="email-language" name="language">
+                  <option selected>中文</option>
+                  <option>English</option>
+                  <option>Bilingual</option>
+                </select>
+              </label>
+
+              <label class="field-group" for="email-deadline">
+                <span>时间 / 截止</span>
+                <input id="email-deadline" name="deadline" type="text" placeholder="下周三前">
+              </label>
+            </div>
+
+            <label class="field-group" for="email-ask">
+              <span>希望对方做什么</span>
+              <input id="email-ask" name="ask" type="text" value="希望老师下周给我 20 分钟建议">
+            </label>
+
+            <label class="field-group" for="email-attachments">
+              <span>附件 / 材料</span>
+              <input id="email-attachments" name="attachments" type="text" placeholder="项目想法草稿、简历、链接等">
+            </label>
+
+            <label class="field-group" for="email-rough-notes">
+              <span>粗糙输入</span>
+              <textarea id="email-rough-notes" name="roughNotes" rows="13" placeholder="我想做一个课程项目&#10;方向还不确定&#10;希望老师帮我看看是否可行"></textarea>
+            </label>
+
+            <div class="tool-actions">
+              <button class="primary-button" type="submit">生成 Prompt</button>
+              <button class="secondary-button" id="clear-email-prompt" type="button">Clear</button>
+            </div>
+          </form>
+
+          <section class="tool-output-panel" aria-label="Generated email prompt">
+            <div class="assistant-output-block">
+              <div class="output-heading">
+                <h3>AI Prompt / AI 提示词</h3>
+                <button class="secondary-button" id="copy-email-prompt" type="button" disabled>复制 Prompt</button>
+              </div>
+              <ul class="missing-info-list" id="email-missing-info" aria-live="polite"></ul>
+              <textarea id="email-prompt-output" rows="22" readonly></textarea>
+            </div>
+            <p class="tool-status" id="email-prompt-status" aria-live="polite">生成结果会出现在这里。</p>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
