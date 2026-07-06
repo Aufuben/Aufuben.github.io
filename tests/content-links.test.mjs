@@ -21,6 +21,17 @@ test("homepage tools section links to the standalone weekly report page", async 
   assert.match(weeklyReport.description, /rough notes/i);
 });
 
+test("homepage tools section links to the standalone email prompt helper", async () => {
+  const content = await loadContent();
+  const tools = content.sections.find((section) => section.id === "tools");
+  const emailHelper = tools.entries.find((entry) => entry.title === "Email Prompt Helper");
+
+  assert.equal(emailHelper.href, "email-prompt.html");
+  assert.equal(emailHelper.status, "Available");
+  assert.equal(emailHelper.actionLabel, "Open tool");
+  assert.match(emailHelper.description, /copyable prompt/i);
+});
+
 test("homepage content has the expanded Experience and Resources structures", async () => {
   const content = await loadContent();
   const experience = content.sections.find((section) => section.id === "experience");
@@ -56,4 +67,11 @@ test("homepage identity content replaces placeholder profile and update copy", a
     /Nanjing University of Posts and Telecommunications.*Institute of AI for Industry/s,
   );
   assert.match(content.about.body, /browser-side tools/i);
+});
+
+test("profile content exposes a compact mobile summary", async () => {
+  const content = await loadContent();
+
+  assert.match(content.profile.mobileSummary, /NUPT undergraduate/i);
+  assert.match(content.profile.mobileSummary, /AI for Industry/i);
 });
