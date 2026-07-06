@@ -40,6 +40,9 @@
     avatar.alt = `${profile.name} avatar`;
 
     const name = createEl("h1", "profile-name", profile.name);
+    const mobileSummary = profile.mobileSummary
+      ? createEl("p", "profile-mobile-summary", profile.mobileSummary)
+      : null;
 
     const education = createEl("div", "profile-education");
     education.append(createEl("strong", "", profile.labels.education));
@@ -47,11 +50,11 @@
       education.append(createEl("span", "", line));
     }
 
-    const quoteBlock = createEl("section", "profile-block");
+    const quoteBlock = createEl("section", "profile-block profile-block-note");
     quoteBlock.append(createEl("div", "rail-label", profile.labels.personalNote));
     quoteBlock.append(createEl("p", "profile-quote", profile.quote));
 
-    const contactBlock = createEl("section", "profile-block");
+    const contactBlock = createEl("section", "profile-block profile-block-contact");
     contactBlock.append(createEl("div", "rail-label", profile.labels.contact));
     const contactList = createEl("div", "contact-list");
     for (const contact of profile.contacts.filter((item) => item.href)) {
@@ -59,7 +62,7 @@
     }
     contactBlock.append(contactList);
 
-    clearAndAppend(root, [avatar, name, education, quoteBlock, contactBlock]);
+    clearAndAppend(root, [avatar, name, mobileSummary, education, quoteBlock, contactBlock]);
   }
 
   function renderTopNav(navItems) {

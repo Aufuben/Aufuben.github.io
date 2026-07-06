@@ -92,6 +92,14 @@ a:hover {
   font-weight: 600;
 }
 
+.profile-mobile-summary {
+  display: none;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
 .profile-education,
 .profile-block {
   display: grid;
@@ -373,7 +381,7 @@ a:hover {
 
 .field-row {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 0.85rem;
 }
 
@@ -396,7 +404,8 @@ a:hover {
 .field-group input,
 .field-group select,
 .field-group textarea,
-#report-output {
+#report-output,
+#email-prompt-output {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -407,12 +416,14 @@ a:hover {
 
 .field-group input,
 .field-group select {
+  min-width: 0;
   min-height: 2.5rem;
   padding: 0.5rem 0.65rem;
 }
 
 .field-group textarea,
-#report-output {
+#report-output,
+#email-prompt-output {
   min-height: 16rem;
   padding: 0.75rem;
   resize: vertical;
@@ -425,6 +436,7 @@ a:hover {
 }
 
 .tool-actions,
+.example-actions,
 .output-heading {
   display: flex;
   flex-wrap: wrap;
@@ -438,7 +450,8 @@ a:hover {
 }
 
 .primary-button,
-.secondary-button {
+.secondary-button,
+.example-button {
   min-height: 2.4rem;
   border-radius: 6px;
   padding: 0.45rem 0.8rem;
@@ -458,6 +471,21 @@ a:hover {
   color: var(--text);
 }
 
+.example-actions {
+  justify-content: flex-start;
+}
+
+.example-button {
+  border: 1px solid var(--line-strong);
+  background: rgba(251, 247, 240, 0.68);
+  color: var(--text);
+}
+
+.example-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .secondary-button:disabled {
   cursor: not-allowed;
   opacity: 0.48;
@@ -473,8 +501,22 @@ a:hover {
   padding-top: 0.25rem;
 }
 
+.missing-info-list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.missing-info-list:empty {
+  display: none;
+}
+
 #quick-draft-output,
-#ai-prompt-output {
+#ai-prompt-output,
+#email-prompt-output {
   width: 100%;
   min-height: 18rem;
   border: 1px solid var(--line);
@@ -624,18 +666,44 @@ a:hover {
   .profile-sidebar {
     position: static;
     top: auto;
-    gap: 0.9rem;
-    padding: 0 0 1rem;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 0.3rem 0.85rem;
+    align-items: center;
+    padding: 0 0 0.85rem;
     border-right: 0;
     border-bottom: 1px solid var(--line);
   }
 
   .profile-avatar {
-    max-width: 140px;
+    grid-row: 1 / span 3;
+    width: 72px;
+    max-width: 72px;
   }
 
   .profile-name {
-    font-size: 1.7rem;
+    font-size: 1.55rem;
+  }
+
+  .profile-mobile-summary {
+    display: block;
+  }
+
+  .profile-education,
+  .profile-block-note {
+    display: none;
+  }
+
+  .profile-block-contact {
+    gap: 0.25rem;
+  }
+
+  .profile-block-contact .rail-label {
+    display: none;
+  }
+
+  .contact-list {
+    gap: 0.35rem 0.8rem;
   }
 
   .top-nav {
