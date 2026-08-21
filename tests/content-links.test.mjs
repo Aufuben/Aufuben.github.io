@@ -100,6 +100,7 @@ test("homepage tools section lists GitHub CLI tools with README one-liners", asy
     "reclaim",
     "pdf-desk",
     "bill-ledger",
+    "agent-gate",
   ]);
   assert.equal(ossTools[0].href, "https://github.com/Aufuben/tiny-http");
   assert.equal(ossTools[0].status, "考研复试主项目");
@@ -126,6 +127,7 @@ test("resources page includes the GitHub CLI tools as compact entries", async ()
     "reclaim",
     "pdf-desk",
     "bill-ledger",
+    "agent-gate",
   ]);
   assert.equal(ossCategory.resources[0].url, "https://github.com/Aufuben/tiny-http");
   assert.equal(ossCategory.resources[0].bestFor, undefined);

@@ -152,6 +152,13 @@ window.YUMO_SITE_CONTENT = {
           href: "https://github.com/Aufuben/bill-ledger",
           actionLabel: "GitHub",
         },
+        {
+          group: "GitHub 开源工具",
+          title: "agent-gate",
+          description: "按 YAML policy 拦截工具调用，双人复核，写审计日志",
+          href: "https://github.com/Aufuben/agent-gate",
+          actionLabel: "GitHub",
+        },
       ],
     },
     {
@@ -230,6 +237,12 @@ window.YUMO_SITE_CONTENT = {
             name: "bill-ledger",
             url: "https://github.com/Aufuben/bill-ledger",
             summary: "读入微信/支付宝对账 CSV，按规则分类，出月报",
+            linkLabel: "GitHub",
+          },
+          {
+            name: "agent-gate",
+            url: "https://github.com/Aufuben/agent-gate",
+            summary: "按 YAML policy 拦截工具调用，双人复核，写审计日志",
             linkLabel: "GitHub",
           },
         ],
@@ -377,7 +390,7 @@ window.YUMO_SITE_CONTENT = {
       date: "2026.08",
       title: "CLI tools on GitHub",
       description:
-        "The Tools section now links to seven command-line utilities. tiny-http is first among them.",
+        "The Tools section now links to eight command-line utilities. tiny-http is first among them.",
     },
     {
       date: "2026.06",
