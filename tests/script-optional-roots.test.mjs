@@ -154,6 +154,80 @@ test("renderContentSections makes available tool entries visibly clickable", asy
   assert.equal(links.some((link) => link.className === "flow-action" && link.textContent === "Open tool"), true);
 });
 
+test("renderContentSections inserts GitHub tool group headings and ids", async () => {
+  const { api, roots } = await loadScript(["content-sections"]);
+  const content = windowlessContent();
+  content.sections = [
+    {
+      id: "tools",
+      label: "02 / Tools",
+      title: "Tools",
+      entries: [
+        {
+          group: "Browser-side",
+          title: "Weekly Report Assistant",
+          description: "Turn rough notes into drafts.",
+          href: "weekly-report.html",
+          actionLabel: "Open tool",
+        },
+        {
+          group: "GitHub 开源工具",
+          groupId: "oss-tools",
+          title: "tiny-http",
+          description: "用 socket 实现的 HTTP/1.1 静态文件服务器（短连接、线程池）",
+          href: "https://github.com/Aufuben/tiny-http",
+          actionLabel: "GitHub",
+        },
+      ],
+    },
+  ];
+
+  api.renderContentSections(content.sections, content.resources);
+
+  const headings = collectElements(
+    roots.get("content-sections"),
+    (element) => element.className === "flow-group-title",
+  );
+  assert.equal(headings.length, 2);
+  assert.equal(headings[0].textContent, "Browser-side");
+  assert.equal(headings[1].textContent, "GitHub 开源工具");
+  assert.equal(headings[1].id, "oss-tools");
+});
+
+test("renderResourcesPage allows compact GitHub tool cards without extra notes", async () => {
+  const { api, roots } = await loadScript(["resources-page"]);
+
+  api.renderResourcesPage({
+    intro: { eyebrow: "Resources", title: "资源", description: "desc" },
+    categories: [
+      {
+        title: "GitHub 开源工具",
+        description: "CLI",
+        resources: [
+          {
+            name: "tiny-http",
+            url: "https://github.com/Aufuben/tiny-http",
+            summary: "用 socket 实现的 HTTP/1.1 静态文件服务器（短连接、线程池）",
+            linkLabel: "GitHub",
+          },
+        ],
+      },
+    ],
+  });
+
+  const labels = collectElements(
+    roots.get("resources-page"),
+    (element) => element.className === "resource-card-label",
+  );
+  const links = collectElements(
+    roots.get("resources-page"),
+    (element) => element.className === "resource-card-link",
+  );
+
+  assert.equal(labels.length, 0);
+  assert.equal(links.some((link) => link.textContent === "GitHub"), true);
+});
+
 function windowlessContent() {
   return {
     publicTitle: "Yumo's Site",

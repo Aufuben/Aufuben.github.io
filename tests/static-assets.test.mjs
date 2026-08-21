@@ -12,6 +12,7 @@ test("stylesheet includes weekly assistant and resources classes", async () => {
   assert.match(css, /\.assistant-output-block/);
   assert.match(css, /#email-prompt-output/);
   assert.match(css, /\.resource-card-grid/);
+  assert.match(css, /\.flow-group-title/);
   assert.match(css, /@media \(max-width: 860px\)/);
 });
 
@@ -42,5 +43,5 @@ test("sitemap includes all pages with the current sync date", async () => {
   assert.match(sitemap, /<loc>https:\/\/Aufuben\.github\.io\/weekly-report\.html<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/Aufuben\.github\.io\/email-prompt\.html<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/Aufuben\.github\.io\/resources\.html<\/loc>/);
-  assert.equal((sitemap.match(/<lastmod>2026-07-06<\/lastmod>/g) || []).length, 4);
+  assert.equal((sitemap.match(/<lastmod>2026-08-21<\/lastmod>/g) || []).length, 4);
 });

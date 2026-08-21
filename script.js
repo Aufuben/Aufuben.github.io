@@ -99,8 +99,7 @@
       body.append(createLink({ label: entry.actionLabel, href: entry.href }, "flow-action"));
     }
 
-    const arrow = createEl("a", "flow-arrow", "↗");
-    arrow.href = entry.href;
+    const arrow = createLink({ label: "↗", href: entry.href }, "flow-arrow");
     arrow.setAttribute("aria-label", `Open ${entry.title}`);
 
     article.append(body, arrow);
@@ -127,7 +126,16 @@
       heading.append(createEl("h2", "", section.title));
 
       const entries = createEl("div", "flow-list");
-      for (const entry of section.entries) entries.append(renderEntry(entry));
+      let currentGroup = null;
+      for (const entry of section.entries) {
+        if (entry.group && entry.group !== currentGroup) {
+          currentGroup = entry.group;
+          const groupTitle = createEl("div", "flow-group-title", entry.group);
+          if (entry.groupId) groupTitle.id = entry.groupId;
+          entries.append(groupTitle);
+        }
+        entries.append(renderEntry(entry));
+      }
 
       block.append(heading, entries);
       if (section.id === "resources") block.append(renderResourceTags(resources));
@@ -179,13 +187,13 @@
     const article = createEl("article", "resource-card");
     const header = createEl("div", "resource-card-header");
     header.append(createEl("h3", "", resource.name));
-    header.append(createLink({ label: "访问资源", href: resource.url }, "resource-card-link"));
+    header.append(createLink({ label: resource.linkLabel || "访问资源", href: resource.url }, "resource-card-link"));
 
     article.append(header);
     article.append(createEl("p", "resource-card-summary", resource.summary));
-    article.append(createResourceDetail("适合", resource.bestFor));
-    article.append(createResourceDetail("打开时机", resource.useWhen));
-    article.append(createResourceDetail("留下原因", resource.whyKeepIt));
+    if (resource.bestFor) article.append(createResourceDetail("适合", resource.bestFor));
+    if (resource.useWhen) article.append(createResourceDetail("打开时机", resource.useWhen));
+    if (resource.whyKeepIt) article.append(createResourceDetail("留下原因", resource.whyKeepIt));
     return article;
   }
 

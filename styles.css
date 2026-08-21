@@ -243,6 +243,22 @@ a:hover {
   gap: 0;
 }
 
+.flow-group-title {
+  margin: 0;
+  padding: 0.85rem 0 0.1rem;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.flow-item + .flow-group-title {
+  margin-top: 0.55rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--line);
+}
+
 .flow-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

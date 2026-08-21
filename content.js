@@ -5,6 +5,7 @@ window.YUMO_SITE_CONTENT = {
     { label: "Home", href: "#home" },
     { label: "Experience", href: "#experience" },
     { label: "Tools", href: "#tools" },
+    { label: "开源", href: "#oss-tools" },
     { label: "Resources", href: "#resources" },
     { label: "About", href: "#about" },
   ],
@@ -33,7 +34,7 @@ window.YUMO_SITE_CONTENT = {
     kicker: "FOR LEARNERS, BUILDERS, AND PEOPLE WHO LIKE USEFUL THINGS",
     title: "Experience, tools, and resources for learning better and working smarter.",
     subtitle:
-      "I use this site to collect learning routes, project notes, AI workflows, practical templates, and small browser-side tools that reduce repeated detours.",
+      "I use this site to collect learning routes, project notes, AI workflows, practical templates, browser-side tools, and a few command-line utilities.",
   },
   sections: [
     {
@@ -67,6 +68,7 @@ window.YUMO_SITE_CONTENT = {
       title: "A small toolbox for daily work",
       entries: [
         {
+          group: "Browser-side",
           title: "Weekly Report Assistant",
           description:
             "Turn rough notes into a safer weekly report draft and a copyable AI prompt for further polishing.",
@@ -75,6 +77,7 @@ window.YUMO_SITE_CONTENT = {
           actionLabel: "Open tool",
         },
         {
+          group: "Browser-side",
           title: "Email Prompt Helper",
           description:
             "Turn rough study or work email notes into a copyable prompt for ChatGPT, Claude, or another model.",
@@ -83,6 +86,7 @@ window.YUMO_SITE_CONTENT = {
           actionLabel: "Open tool",
         },
         {
+          group: "Browser-side",
           title: "Task Board",
           description:
             "A lightweight board for course, project, and work tasks without unnecessary ceremony.",
@@ -90,11 +94,63 @@ window.YUMO_SITE_CONTENT = {
           status: "Coming soon",
         },
         {
+          group: "Browser-side",
           title: "Public Webpage to Table Script",
           description:
             "Collect public webpage information and export it into a clean spreadsheet for comparison.",
           href: "#tools",
           status: "Coming soon",
+        },
+        {
+          group: "GitHub 开源工具",
+          groupId: "oss-tools",
+          title: "tiny-http",
+          description: "用 socket 实现的 HTTP/1.1 静态文件服务器（短连接、线程池）",
+          href: "https://github.com/Aufuben/tiny-http",
+          status: "考研复试主项目",
+          actionLabel: "GitHub",
+        },
+        {
+          group: "GitHub 开源工具",
+          title: "fit-to-size",
+          description: "把视频、图片或 PDF 压到指定体积",
+          href: "https://github.com/Aufuben/fit-to-size",
+          actionLabel: "GitHub",
+        },
+        {
+          group: "GitHub 开源工具",
+          title: "share-safe",
+          description: "去掉照片和 PDF 里的 GPS 及其他可识别元数据",
+          href: "https://github.com/Aufuben/share-safe",
+          actionLabel: "GitHub",
+        },
+        {
+          group: "GitHub 开源工具",
+          title: "twin-photos",
+          description: "找出内容相同或观感相近的照片，把多余文件移到隔离目录",
+          href: "https://github.com/Aufuben/twin-photos",
+          actionLabel: "GitHub",
+        },
+        {
+          group: "GitHub 开源工具",
+          title: "reclaim",
+          description: "扫描体积大、较久未用的目录，可选移到隔离区",
+          href: "https://github.com/Aufuben/reclaim",
+          actionLabel: "GitHub",
+        },
+        {
+          group: "GitHub 开源工具",
+          title: "pdf-desk",
+          description: "命令行 PDF：合并、拆页、旋转、压缩、去元数据、加水印",
+          href: "https://github.com/Aufuben/pdf-desk",
+          actionLabel: "GitHub",
+        },
+        {
+          group: "GitHub 开源工具",
+          title: "bill-ledger",
+          description: "读入微信/支付宝对账 CSV，按规则分类，出月报",
+          href: "https://github.com/Aufuben/bill-ledger",
+          actionLabel: "GitHub",
         },
       ],
     },
@@ -106,22 +162,78 @@ window.YUMO_SITE_CONTENT = {
         {
           title: "Curated resource shelves",
           description:
-            "AI tools, study paths, project templates, programming references, writing support, and automation ideas worth revisiting.",
+            "GitHub CLI tools, AI tools, study paths, project templates, programming references, writing support, and automation ideas worth revisiting.",
           href: "resources.html",
           actionLabel: "Open resources",
         },
       ],
     },
   ],
-  resources: ["AI Tools", "Study Path", "Project Templates", "Programming", "Writing", "Automation"],
+  resources: [
+    "GitHub 开源工具",
+    "AI Tools",
+    "Study Path",
+    "Project Templates",
+    "Programming",
+    "Writing",
+    "Automation",
+  ],
   resourcesPage: {
     intro: {
       eyebrow: "Resources",
       title: "一小排真正会反复用到的资源",
       description:
-        "这里不做大而全的收藏夹，只放适合学习、搭建项目、写作和自动化的稳定入口。每个资源都附上适合谁、什么时候打开，以及我为什么会把它留在这里。",
+        "这里不做大而全的收藏夹，只放适合学习、搭建项目、写作和自动化的稳定入口。外部资源会写适合谁、什么时候打开；开源命令行工具只留一句话和 GitHub 链接。",
     },
     categories: [
+      {
+        title: "GitHub 开源工具",
+        description: "自己写的命令行小工具，一句话说明，仓库在 GitHub。",
+        resources: [
+          {
+            name: "tiny-http",
+            url: "https://github.com/Aufuben/tiny-http",
+            summary: "用 socket 实现的 HTTP/1.1 静态文件服务器（短连接、线程池）",
+            linkLabel: "GitHub",
+          },
+          {
+            name: "fit-to-size",
+            url: "https://github.com/Aufuben/fit-to-size",
+            summary: "把视频、图片或 PDF 压到指定体积",
+            linkLabel: "GitHub",
+          },
+          {
+            name: "share-safe",
+            url: "https://github.com/Aufuben/share-safe",
+            summary: "去掉照片和 PDF 里的 GPS 及其他可识别元数据",
+            linkLabel: "GitHub",
+          },
+          {
+            name: "twin-photos",
+            url: "https://github.com/Aufuben/twin-photos",
+            summary: "找出内容相同或观感相近的照片，把多余文件移到隔离目录",
+            linkLabel: "GitHub",
+          },
+          {
+            name: "reclaim",
+            url: "https://github.com/Aufuben/reclaim",
+            summary: "扫描体积大、较久未用的目录，可选移到隔离区",
+            linkLabel: "GitHub",
+          },
+          {
+            name: "pdf-desk",
+            url: "https://github.com/Aufuben/pdf-desk",
+            summary: "命令行 PDF：合并、拆页、旋转、压缩、去元数据、加水印",
+            linkLabel: "GitHub",
+          },
+          {
+            name: "bill-ledger",
+            url: "https://github.com/Aufuben/bill-ledger",
+            summary: "读入微信/支付宝对账 CSV，按规则分类，出月报",
+            linkLabel: "GitHub",
+          },
+        ],
+      },
       {
         title: "AI Tools",
         description: "用于思考、写作、整理材料和推进复杂任务的 AI 工作入口。",
@@ -262,6 +374,12 @@ window.YUMO_SITE_CONTENT = {
   },
   updates: [
     {
+      date: "2026.08",
+      title: "CLI tools on GitHub",
+      description:
+        "The Tools section now links to seven command-line utilities. tiny-http is first among them.",
+    },
+    {
       date: "2026.06",
       title: "Site direction defined",
       description:
@@ -283,6 +401,6 @@ window.YUMO_SITE_CONTENT = {
   about: {
     label: "05 / About",
     title: "About this site",
-    body: "Yumo is an undergraduate student at Nanjing University of Posts and Telecommunications and a trainee in the Institute of AI for Industry, Chinese Academy of Sciences. This site collects learning routes, project notes, AI workflows, curated resources, and small browser-side tools built from real study and work needs.",
+    body: "Yumo is an undergraduate student at Nanjing University of Posts and Telecommunications and a trainee in the Institute of AI for Industry, Chinese Academy of Sciences. This site collects learning routes, project notes, AI workflows, curated resources, small browser-side tools, and command-line utilities built from real study and work needs.",
   },
 };
